@@ -1,6 +1,7 @@
 # Common Service
 This repository contains common framework code for the Response Management [Spring Boot](http://projects.spring.io/spring-boot/) applications, as well as reusable test framework code for the same.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/37fdebe43c0f467ead6394a3d43d90f4)](https://www.codacy.com/app/sdcplatform/rm-common-service?utm_source=github.com&utm_medium=referral&utm_content=ONSdigital/rm-common-service&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/ONSdigital/rm-common-service.svg?branch=master)](https://travis-ci.org/ONSdigital/rm-common-service)
 
 ## framework
