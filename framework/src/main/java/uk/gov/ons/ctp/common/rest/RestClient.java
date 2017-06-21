@@ -1,6 +1,7 @@
 package uk.gov.ons.ctp.common.rest;
 
 import java.io.IOException;
+import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -263,9 +264,66 @@ public class RestClient {
           config.getRetryPauseMilliSeconds());
       ResponseEntity<T[]> response = retryCommand
           .run(() -> restTemplate.exchange(uriComponents.toUri(), HttpMethod.GET, httpEntity, clazz), shouldRetry());
-
+      
       if (!response.getStatusCode().is2xxSuccessful()) {
         log.error("Failed to get when calling {}", uriComponents.toUri());
+        throw new RestClientException("Unexpected response status" + response.getStatusCode().value());
+      }
+      T[] responseArray = response.getBody();
+      if (responseArray != null && responseArray.length > 0) {
+        responseList = Arrays.asList(response.getBody());
+      }
+    } finally {
+      if (tracer != null) {
+        tracer.close(span);
+      }
+    }
+    return responseList;
+  }
+
+  /**
+   * Use to perform a GET that retrieves multiple instances of a resource
+   *
+   * @param <T> the type that will returned by the server we call
+   * @param path the API path - can contain path params place holders in "{}" ie
+   *          "/cases/{caseid}"
+   * @param clazz the array class type of the resource, a List<> of which is to
+   *          be obtained
+   * @param headerParams map of header of params to be used - can be null
+   * @param queryParams multi map of query params keyed by string logically
+   *          allows for K:"haircolor",V:"blond" AND K:"shoesize", V:"9","10"
+   * @param pathParams vargs list of params to substitute in the path - note
+   *          simply used in order
+   * @return a list of the type you asked for
+   * @throws RestClientException something went wrong making http call
+   */
+  public <T> List<T> getResourcesPlain(
+      String path,
+      Class<T[]> clazz,
+      Map<String, String> headerParams)
+      throws RestClientException {
+
+    log.debug("Enter getResources for path : {}", path);
+
+    Span span = null;
+    if (tracer != null) {
+      span = tracer.createSpan(path);
+    }
+    HttpEntity<?> httpEntity = createHttpEntity(span, null, headerParams);
+
+    List<T> responseList = new ArrayList<T>();
+    
+    String fullPath = config.getScheme() +"://" + config.getHost() + ":" + config.getPort() + path;
+    
+
+    try {
+      RetryCommand<ResponseEntity<T[]>> retryCommand = new RetryCommand<>(config.getRetryAttempts(),
+          config.getRetryPauseMilliSeconds());
+      ResponseEntity<T[]> response = retryCommand
+          .run(() -> restTemplate.exchange(fullPath, HttpMethod.GET, httpEntity, clazz), shouldRetry());
+      
+      if (!response.getStatusCode().is2xxSuccessful()) {
+        log.error("Failed to get when calling {}", fullPath);
         throw new RestClientException("Unexpected response status" + response.getStatusCode().value());
       }
       T[] responseArray = response.getBody();
