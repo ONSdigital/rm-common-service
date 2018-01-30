@@ -10,8 +10,10 @@
   <description>CTP : Common Framework</description>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <spring.boot.version>1.5.6.RELEASE</spring.boot.version>
+    <spring.cloud.version>1.2.4.RELEASE</spring.cloud.version>
+    <spring.integration.version>4.3.11.RELEASE</spring.integration.version>
+    <surefire.version>2.20</surefire.version>
   </properties>
 
   <!-- Inherit parent BOM to control versions of dependencies and plugin version & config -->
@@ -25,6 +27,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring.boot.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
@@ -36,41 +39,49 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-validation</artifactId>
+      <version>${spring.boot.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
+      <version>${spring.boot.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.retry</groupId>
       <artifactId>spring-retry</artifactId>
+      <version>1.2.1.RELEASE</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-oxm</artifactId>
+        <version>4.3.10.RELEASE</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
+        <version>4.5.3</version>
     </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <version>1.16.18</version>
     </dependency>
 
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
+      <version>3.2.2</version>
     </dependency>
 
     <dependency>
       <groupId>org.redisson</groupId>
       <artifactId>redisson</artifactId>
+      <version>3.2.0</version>
       <exclusions>
         <exclusion>
           <groupId>javax.cache</groupId>
@@ -82,23 +93,27 @@
     <dependency>
       <groupId>ma.glasnost.orika</groupId>
       <artifactId>orika-core</artifactId>
+      <version>1.5.1</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <version>${spring.boot.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>
       <artifactId>json-path</artifactId>
+      <version>2.2.0</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>net.sourceforge.cobertura</groupId>
       <artifactId>cobertura</artifactId>
+      <version>2.1.1</version>
     </dependency>
   </dependencies>
 
