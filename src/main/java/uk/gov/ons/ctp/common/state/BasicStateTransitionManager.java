@@ -1,5 +1,7 @@
 package uk.gov.ons.ctp.common.state;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +42,15 @@ public class BasicStateTransitionManager<S, E> implements StateTransitionManager
       throw new CTPException(CTPException.Fault.BAD_REQUEST, String.format(TRANSITION_ERROR_MSG, sourceState, event));
     }
     return destinationState;
+  }
+
+  @Override
+  public Collection<S> getAvailableTransitions(S sourceState) {
+    Map<E, S> outputMap = transitions.get(sourceState);
+    if (outputMap != null) {
+      return outputMap.values();
+    }
+    return Collections.emptyList();
   }
 
 }
