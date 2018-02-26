@@ -9,9 +9,7 @@ import org.junit.Test;
 import uk.gov.ons.ctp.common.error.CTPException;
 
 import static junit.framework.TestCase.fail;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static uk.gov.ons.ctp.common.state.BasicStateTransitionManager.TRANSITION_ERROR_MSG;
@@ -71,10 +69,11 @@ public class TestStateTransitionManager {
     TestState submitted = TestState.SUBMITTED;
 
     // When
-    Collection<TestState> availableTransitions = stm.getAvailableTransitions(submitted);
+    Map<TestEvent, TestState> availableTransitions = stm.getAvailableTransitions(submitted);
 
     // Then
-    assertThat(availableTransitions, containsInAnyOrder(TestState.PENDING, TestState.COMPLETED));
+    assertThat(availableTransitions, hasEntry(TestEvent.REQUEST_DISTRIBUTED, TestState.PENDING));
+    assertThat(availableTransitions, hasEntry(TestEvent.REQUEST_COMPLETED, TestState.COMPLETED));
   }
 
   /**
@@ -86,10 +85,9 @@ public class TestStateTransitionManager {
       TestState active = TestState.ACTIVE;
 
       // When
-      Collection<TestState> availableTransitions = stm.getAvailableTransitions(active);
+      Map<TestEvent, TestState> availableTransitions = stm.getAvailableTransitions(active);
 
       // Then
-      assertThat(availableTransitions, empty());
+      assertThat(availableTransitions.keySet(), empty());
   }
-
 }

@@ -45,12 +45,12 @@ public class BasicStateTransitionManager<S, E> implements StateTransitionManager
   }
 
   @Override
-  public Collection<S> getAvailableTransitions(S sourceState) {
+  public Map<E, S> getAvailableTransitions(S sourceState) {
     Map<E, S> outputMap = transitions.get(sourceState);
     if (outputMap != null) {
-      return outputMap.values();
+      return outputMap;
     }
-    return Collections.emptyList();
+    return Collections.emptyMap();
   }
 
 }

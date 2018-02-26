@@ -3,6 +3,7 @@ package uk.gov.ons.ctp.common.state;
 import uk.gov.ons.ctp.common.error.CTPException;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * A template interface for a state transition manager that will map valid
@@ -24,6 +25,6 @@ public interface StateTransitionManager<S, E> {
    */
    S transition(S sourceState, E event) throws CTPException;
 
-   Collection<S> getAvailableTransitions(S sourceState);
+   Map<E, S> getAvailableTransitions(S sourceState);
 
 }
