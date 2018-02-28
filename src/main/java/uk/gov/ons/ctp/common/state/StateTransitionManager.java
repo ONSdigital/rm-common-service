@@ -2,7 +2,6 @@ package uk.gov.ons.ctp.common.state;
 
 import uk.gov.ons.ctp.common.error.CTPException;
 
-import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -25,6 +24,10 @@ public interface StateTransitionManager<S, E> {
    */
    S transition(S sourceState, E event) throws CTPException;
 
+    /**
+     * @param sourceState the initial state it is in
+     * @return the available states that an initial state can move to and the events required to get there
+     */
    Map<E, S> getAvailableTransitions(S sourceState);
 
 }

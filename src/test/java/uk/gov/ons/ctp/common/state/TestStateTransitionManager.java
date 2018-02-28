@@ -1,15 +1,15 @@
 package uk.gov.ons.ctp.common.state;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 import uk.gov.ons.ctp.common.error.CTPException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static junit.framework.TestCase.fail;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.hasEntry;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static uk.gov.ons.ctp.common.state.BasicStateTransitionManager.TRANSITION_ERROR_MSG;

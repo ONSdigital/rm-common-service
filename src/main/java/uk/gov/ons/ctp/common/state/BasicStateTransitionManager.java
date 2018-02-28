@@ -1,13 +1,12 @@
 package uk.gov.ons.ctp.common.state;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 import lombok.Data;
 import lombok.Getter;
 import uk.gov.ons.ctp.common.error.CTPException;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A Simple impl of StateTransitionManager
@@ -27,12 +26,12 @@ public class BasicStateTransitionManager<S, E> implements StateTransitionManager
    * Construct the instance with a provided map of transitions
    * @param transitionMap the transitions
    */
-  public BasicStateTransitionManager(Map<S, Map<E, S>> transitionMap) {
+  public BasicStateTransitionManager(final Map<S, Map<E, S>> transitionMap) {
     transitions = transitionMap;
   }
 
   @Override
-  public S transition(S sourceState, E event) throws CTPException {
+  public S transition(final S sourceState, final E event) throws CTPException {
     S destinationState = null;
     Map<E, S> outputMap = transitions.get(sourceState);
     if (outputMap != null) {
@@ -45,7 +44,7 @@ public class BasicStateTransitionManager<S, E> implements StateTransitionManager
   }
 
   @Override
-  public Map<E, S> getAvailableTransitions(S sourceState) {
+  public Map<E, S> getAvailableTransitions(final S sourceState) {
     Map<E, S> outputMap = transitions.get(sourceState);
     if (outputMap != null) {
       return outputMap;
