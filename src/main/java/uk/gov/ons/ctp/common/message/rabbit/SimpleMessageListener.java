@@ -61,7 +61,7 @@ public class SimpleMessageListener extends SimpleMessageBase {
 
     declareExchangeAndBind(rabbitAdmin, queue, type, exchangeName, routingKey);
 
-    final BlockingQueue<String> transfer = new ArrayBlockingQueue<>(5);
+    final BlockingQueue<String> transfer = new ArrayBlockingQueue<>(100);
 
     MessageListener messageListener =
         new MessageListener() {
