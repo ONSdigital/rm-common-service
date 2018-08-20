@@ -2,11 +2,10 @@ package uk.gov.ons.ctp.common.util;
 
 import com.godaddy.logging.Logger;
 import com.godaddy.logging.LoggerFactory;
-import net.sourceforge.cobertura.CoverageIgnore;
-import uk.gov.ons.ctp.common.error.CTPException;
-
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import net.sourceforge.cobertura.CoverageIgnore;
+import uk.gov.ons.ctp.common.error.CTPException;
 
 /**
  * A class which allows for the repeated execution of a provided lambda. If the lambda throws an

@@ -2,14 +2,13 @@ package uk.gov.ons.ctp.common.distributed;
 
 import com.godaddy.logging.Logger;
 import com.godaddy.logging.LoggerFactory;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.redisson.api.RBucket;
 import org.redisson.api.RKeys;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * A generic distributed list (a crude map effectively) (or lists plural) of things T This is a

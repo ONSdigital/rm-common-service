@@ -2,13 +2,12 @@ package uk.gov.ons.ctp.common.util;
 
 import com.godaddy.logging.Logger;
 import com.godaddy.logging.LoggerFactory;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import javax.xml.transform.stream.StreamResult;
 import net.sourceforge.cobertura.CoverageIgnore;
 import org.springframework.oxm.Marshaller;
 import uk.gov.ons.ctp.common.error.CTPException;
-
-import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 /**
  * A class which allows for the execution of a provided CheckedFunction lambda. If the lambda throws

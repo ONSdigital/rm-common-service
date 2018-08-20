@@ -2,7 +2,6 @@ package uk.gov.ons.ctp.common.util;
 
 import com.godaddy.logging.Logger;
 import com.godaddy.logging.LoggerFactory;
-
 import java.text.DateFormat;
 import java.text.FieldPosition;
 import java.text.ParsePosition;

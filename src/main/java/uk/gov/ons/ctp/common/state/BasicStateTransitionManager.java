@@ -2,13 +2,12 @@ package uk.gov.ons.ctp.common.state;
 
 import com.godaddy.logging.Logger;
 import com.godaddy.logging.LoggerFactory;
-import lombok.Data;
-import lombok.Getter;
-import uk.gov.ons.ctp.common.error.CTPException;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Data;
+import lombok.Getter;
+import uk.gov.ons.ctp.common.error.CTPException;
 
 /**
  * A Simple impl of StateTransitionManager

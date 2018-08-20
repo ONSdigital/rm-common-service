@@ -1,19 +1,15 @@
 package uk.gov.ons.ctp.common.retry;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.godaddy.logging.Logger;
 import com.godaddy.logging.LoggerFactory;
 import com.google.common.base.Joiner;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Collections;
+import java.util.List;
 import net.sourceforge.cobertura.CoverageIgnore;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.retry.RetryContext;
 import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.context.RetryContextSupport;
 import org.springframework.util.ClassUtils;
-import uk.gov.ons.ctp.common.distributed.DistributedListManagerRedissonImpl;
 
 /**
  * A RetryPolicy that will retry ONLY when the thrown exception's cause belongs to a list of
@@ -28,8 +24,7 @@ import uk.gov.ons.ctp.common.distributed.DistributedListManagerRedissonImpl;
 @CoverageIgnore
 public class CTPRetryPolicy implements RetryPolicy {
 
-  private static final Logger log =
-      LoggerFactory.getLogger(CTPRetryPolicy.class);
+  private static final Logger log = LoggerFactory.getLogger(CTPRetryPolicy.class);
 
   private static final int DEFAULT_MAX_ATTEMPTS = 3;
   private static final String RUNTIME_EXCEPTION = "java.lang.RuntimeException";
@@ -117,7 +112,8 @@ public class CTPRetryPolicy implements RetryPolicy {
         }
       }
     } catch (ClassNotFoundException e) {
-      log.with("class_names", Joiner.on(",").join(retryableExceptions)).error("Invalid classname", e);
+      log.with("class_names", Joiner.on(",").join(retryableExceptions))
+          .error("Invalid classname", e);
     }
 
     return false;
