@@ -1,13 +1,16 @@
 package uk.gov.ons.ctp.common.retry;
 
-import java.util.Collections;
-import java.util.List;
-import lombok.extern.slf4j.Slf4j;
+import com.godaddy.logging.Logger;
+import com.godaddy.logging.LoggerFactory;
+import com.google.common.base.Joiner;
 import net.sourceforge.cobertura.CoverageIgnore;
 import org.springframework.retry.RetryContext;
 import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.context.RetryContextSupport;
 import org.springframework.util.ClassUtils;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A RetryPolicy that will retry ONLY when the thrown exception's cause belongs to a list of
@@ -20,8 +23,10 @@ import org.springframework.util.ClassUtils;
  * queue.
  */
 @CoverageIgnore
-@Slf4j
 public class CTPUnknownHostRetryPolicy implements RetryPolicy {
+
+  private static final Logger log =
+      LoggerFactory.getLogger(CTPUnknownHostRetryPolicy.class);
 
   private static final int DEFAULT_MAX_ATTEMPTS = 3;
   private static final String RUNTIME_EXCEPTION = "java.lang.RuntimeException";
@@ -122,8 +127,7 @@ public class CTPUnknownHostRetryPolicy implements RetryPolicy {
         }
       }
     } catch (ClassNotFoundException e) {
-      log.error("msg {} - cause {}", e.getMessage(), e.getCause());
-      log.error("Stack trace: " + e);
+      log.with("class_names", Joiner.on(",").join(retryableExceptions)).error("Invalid classname", e);
     }
     return false;
   }
@@ -144,8 +148,7 @@ public class CTPUnknownHostRetryPolicy implements RetryPolicy {
         }
       }
     } catch (ClassNotFoundException e) {
-      log.error("msg {} - cause {}", e.getMessage(), e.getCause());
-      log.error("Stack trace: " + e);
+      log.with("class_names", Joiner.on(",").join(retryableExceptions)).error("Invalid classname", e);
     }
 
     return false;

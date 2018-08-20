@@ -4,9 +4,10 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import net.sourceforge.cobertura.CoverageIgnore;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import net.sourceforge.cobertura.CoverageIgnore;
 
 /**
  * The CTP business exception.
@@ -36,7 +37,8 @@ public class CTPException extends Exception {
     /** For access denied */
     ACCESS_DENIED,
     /** For bad requests */
-    BAD_REQUEST
+    BAD_REQUEST;
+
   }
 
   private Fault fault;
