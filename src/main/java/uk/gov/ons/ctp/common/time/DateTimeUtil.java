@@ -78,7 +78,7 @@ public class DateTimeUtil {
       gregorianCalendar.setTime(date);
       result = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
     } catch (ParseException e) {
-      log.error(e, "Failed to parse date");
+      log.error("Failed to parse date", e);
       result = DateTimeUtil.giveMeCalendarForNow();
     }
 
