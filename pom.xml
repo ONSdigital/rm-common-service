@@ -2,8 +2,8 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>uk.gov.ons.ctp.common</groupId>
-  <artifactId>framework</artifactId>
-  <version>10.49.22-SNAPSHOT</version>
+  <artifactId>rm-common-service</artifactId>
+  <version>11.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>CTP : Common Framework</name>
